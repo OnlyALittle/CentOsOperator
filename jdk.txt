@@ -1,0 +1,42 @@
+1、下载tar版本的jdk
+
+2、上传到宿主机
+
+3、启动docker时把目录/mnt/software 挂到 /docker/centos
+docker run -it -v /docker/centos/:/mnt/software/ centos /bin/bash
+
+-i：表示以“交互模式”运行容器
+-t：表示容器启动后会进入其命令行  （）
+-v：表示需要将本地哪个目录挂载到容器中   （这个目录和本地是交互的，目录下的文件在容器和本地上是可以相互看见的）
+格式：-v <宿主机目录>:<容器目录>
+
+4、在容器中解压jdk
+tar -zxvf jdk-8u144-linux-x64.tar.gz
+
+-zxvf　　　　　
+-z　　　　　　 　　　　　　　　  通过gzip指令处理备份文件
+-x　　　　　　　　　　　　　　   从备份文件中还原文件
+-v　　　　　　　　　　　　　　   显示指令执行过程
+-f　　　　　　 　　　　　　　　   指定备份文件
+jdk-8u144-linux-x64.tar.gz　　　　文件名
+
+
+5、配置环境变量(注意不用随便打空格)
+vim /etc/profile
+
+#java environment
+export JAVA_HOME=/usr/java/jdk1.8.0_144
+export CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
+export PATH=$PATH:${JAVA_HOME}/bin
+
+6、环境变量生效
+source /etc/profile
+
+
+7、测试
+java -version
+
+
+
+
+

@@ -1,0 +1,14 @@
+1、docker pull tomcat:8
+
+2、docker run 
+-v /app/deploy/www:/usr/local/tomcat/webapps/Database 
+-p 8081:8080 tomcat:8 
+
+
+
+
+
+#镜像中的挂载位置
+#tomcat:/usr/local/tomcat/webapps/
+#nginx:html  /usr/share/nginx/html        文件 /usr/share/nginx/home/userfile
+#mysql:配置文件/etc/mysql/conf.d  数据库文件/var/lib/mysql

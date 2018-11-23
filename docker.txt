@@ -29,7 +29,7 @@ service docker restart
 从 Docker 镜像仓库获取镜像的命令是 docker pull。其命令格式为：
 
 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]  
-
+docker pull centos
 
 运行镜像
 docker run -it --rm centos bash
@@ -52,6 +52,9 @@ docker system df
 tomcat+mysql+javaweb
 https://blog.csdn.net/liqz666/article/details/82253486
 
+
+#操作
+https://blog.csphere.cn/archives/22
 
 
 
