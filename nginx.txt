@@ -1,0 +1,47 @@
+docker pull nginx
+#下载镜像
+docker cp nginx:/etc/nginx/nginx.conf /docker/images/nginx.conf
+docker cp nginx:/etc/nginx/conf.d/default.conf /docker/images/default.conf
+#去一个空白的nginx镜像中拷贝一份配置文件，也可以自己写
+docker cp A:B Color
+A代表实例 B代表容器中的文件 C代表挂载的位置
+
+
+docker run -d --name images -p 9090:80 -v /docker/images/logs:/var/log/nginx -v /docker/images/html:/usr/share/nginx/html -v /docker/images/default.conf:/etc/nginx/conf.d/default.conf -v /docker/images/nginx.conf:/etc/nginx/nginx.conf nginx
+
+-d守护模式，不打印日志
+--name 命名容器
+-p 映射端口，宿主机：容器内部的端口
+-v 挂载 宿主机:容器内部
+最后的那个nginx为镜像名
+
+
+如果出现403，则需要在nginx.conf 中修改use nginx 为use root
+
+
+负载均衡个代理、准备切换
+http://www.cnblogs.com/wang-meng/p/5861174.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
