@@ -5,16 +5,28 @@
 
    - 在路径/docker/redis下创建一个文件夹redis-cluster,在路径/docker/redis/redis-cluster下创建一个文件redis-cluster.tmpl，并把以下内容复制过去。
 
-	```
-	port ${PORT}                                       ##节点端口
-	protected-mode no                                  ##开启集群模式
-	cluster-enabled yes                                ##cluster集群模式
-	cluster-config-file nodes.conf                     ##集群配置名
-	cluster-node-timeout 5000                          ##超时时间
-	cluster-announce-ip 192.168.XX.XX                  ##实际为各节点网卡分配ip  先用上网关ip代替,这个网关ip在后面讲
-	cluster-announce-port ${PORT}                      ##节点映射端口
-	cluster-announce-bus-port 1${PORT}                 ##节点总线端口
-	appendonly yes                                     ##持久化模式
+	```bash
+	##节点端口
+	port ${PORT}
+	##开启集群模式
+	protected-mode no
+	##cluster集群模式
+	cluster-enabled yes
+	##集群配置名
+	cluster-config-file nodes.conf
+	##超时时间
+	cluster-node-timeout 5000
+	##实际为各节点网卡分配ip  先用上网关ip代替
+	cluster-announce-ip  172.16.207.255
+	##节点映射端口
+	cluster-announce-port ${PORT}
+	##节点总线端口
+	cluster-announce-bus-port 1${PORT}
+	##持久化
+	appendonly yes
+	# requirepass foobared
+	# 指定密码root
+	requirepass root
 
 	```
 	`备注：此模版文件为集群节点通用文件  其中${PORT} 将读取命令行变量  ip则根据网卡分配ip进行替换  以保证节点配置文件除端口以及ip 全部一致。`
